@@ -14,7 +14,6 @@ const UserSchema = new Schema({
         unique: true,
         match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
     },
-    // TODO: fill this in with thought id information
     thoughts: [
         {
             type: Schema.Types.ThoughtId,
