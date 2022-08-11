@@ -38,6 +38,7 @@ const userController = {
       },
 
       // POST /api/users
+      // expects { "username": "lernantino", "enail": "lernantino@gmail.com"}
       createUser({ body }, res){
         User.create(body)
         .then(dbUserData => res.json(dbUserData))
