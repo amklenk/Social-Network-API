@@ -9,12 +9,12 @@ const {
     removeFriend
  } = require('../../controllers/user-controller');
 
- // set up GET all and Post at /api/pizzas
+ // set up GET all and Post at /api/users
 router.route('/')
 .get(getAllUsers)
 .post(createUser);
 
-// set up GET one, PUT, and DELETE at /api/pizzas/:id
+// set up GET one, PUT, and DELETE at /api/users/:userId
 router.route('/:userId')
 .get(getUserById)
 .put(updateUser)
