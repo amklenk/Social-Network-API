@@ -11,7 +11,7 @@ const ReactionSchema = new Schema({
         type: String,
         required: true,
         trim: true,
-        maxlength: 280
+        maxlength: [280, 'Please type a maximum of 280 characters!']
     },
     username: {
         type: String,
@@ -34,8 +34,8 @@ const ThoughtSchema = new Schema({
     thoughtText: {
         type: String,
         required: true,
-        minlength: 1,
-        maxlength: 280
+        minlength: [1, 'Please type between 1 and 280 characters!'],
+        maxlength: [280, 'Please type between 1 and 280 characters!']
     },
     createdAt: {
         type: Date,
