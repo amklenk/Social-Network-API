@@ -14,7 +14,7 @@ const thoughtController = {
       },
     // GET /api/thoughts/thoughtId#
     getThoughtById({ params }, res) {
-        Thought.findOne({ _id: params.id })
+        Thought.findOne({ _id: params.thoughtId })
         .select('-__v')
         .then((dbThoughtData) => {
           if (!dbThoughtData) {
@@ -32,8 +32,12 @@ const thoughtController = {
     // expects { "thoughtText": "Here's a cool thought...", "username": "lernantino", "userId": "5edff358a0fcb779aa7b118b"}
     addThought({ params, body }, res){
        Thought.create(body).then(({ _id }) => {
-            return User.findOneAndUpdate(
-                { _id: params.userId },
+        let uId = body.userId;
+        console.log(uId);
+        console.log(_id);
+        // console.log(body);
+            User.findOneAndUpdate(
+                { _id: body.userId },
                 { $push: { thoughts: _id } },
                 { new: true }
             );
@@ -48,7 +52,7 @@ const thoughtController = {
     // PUT /api/thoughts/thoughtsId#
     // TODO: I think you need the user here
     updateThought({ params, body }, res) {
-        Thought.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
+        Thought.findOneAndUpdate({ _id: params.thoughtId }, body, { new: true, runValidators: true })
         .then(dbThoughtData => {
           if (!dbThoughtData) {
             res.status(404).json({ message: 'No thought found with this id!' });
