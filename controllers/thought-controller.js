@@ -32,12 +32,13 @@ const thoughtController = {
     // expects { "thoughtText": "Here's a cool thought...", "username": "lernantino", "userId": "5edff358a0fcb779aa7b118b"}
     addThought({ params, body }, res){
        Thought.create(body).then(({ _id }) => {
-        let uId = body.userId;
-        console.log(uId);
-        console.log(_id);
-        // console.log(body);
+        // let uId = body.userId;
+        // console.log(uId);
+        // console.log(_id);
+        console.log(body);
+        console.log(body.userId);
             User.findOneAndUpdate(
-                { _id: body.userId },
+                { _id: params.userId },
                 { $push: { thoughts: _id } },
                 { new: true }
             );
@@ -102,7 +103,7 @@ const thoughtController = {
     removeReaction({ params }, res) {
         Thought.findOneAndUpdate(
           { _id: params.thoughtId },
-          { $pull: { reactions: { reactionId: params.reactionId } } },
+          { $pull: { reactions } },
           { new: true }
         )
           .then(dbUserData => res.json(dbUserData))
