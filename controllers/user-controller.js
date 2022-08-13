@@ -38,7 +38,7 @@ const userController = {
       },
 
       // POST /api/users
-      // expects { "username": "lernantino", "enail": "lernantino@gmail.com"}
+      // expects { "username": "lernantino", "email": "lernantino@gmail.com"}
       createUser({ body }, res){
         User.create(body)
         .then(dbUserData => res.json(dbUserData))
@@ -46,6 +46,7 @@ const userController = {
       },
 
       // PUT /api/users/userId#
+      // TODO: can only update username
       updateUser({ params, body }, res) {
         User.findOneAndUpdate({ _id: params.userId }, body, { new: true, runValidators: true })
         .then(dbUserData => {
@@ -70,17 +71,6 @@ const userController = {
         })
         .catch(err => res.status(400).json(err));
       },
-      // TODO: Don't think this is what I want to do for removing associated thoughts
-      // // remove associated thoughts
-      // removeThought({ params }, res) {
-      //   User.findOneAndUpdate(
-      //     { _id: params.userId },
-      //     { $pull: { thoughts: { thoughtId: params.thoughtId } } },
-      //     { new: true }
-      //   )
-      //     .then(dbUserData => res.json(dbUserData))
-      //     .catch(err => res.json(err));
-      // },
       // POST /api/users/userId#/friends/friendId#
     addFriend({ params, body }, res){
       User.findOneAndUpdate(
