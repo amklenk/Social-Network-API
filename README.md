@@ -37,19 +37,19 @@ to install the dependencies locally.
 The following are screenshots of the API routes being tested in Insomnia
 
 Get All Users:
-![]()
+![Get All Users](./assets/images/GetAll.png)
 
-Get By Id:
-![]()
+Get User By Id:
+![Get User By Id](./assets/images/GetById.png)
 
 Post a Thought:
-![]()
+![Post a Thought](./assets/images/PostThought.png)
 
 Update Thought:
-![]()
+![Put Thought](./assets/images/PutThought.png)
 
 Delete a Reaction:
-![]()
+![Delete Reaction](./assets/images/DeleteReaction.png)
 
 The models directory contains the schema for User, Thought, and Reaction. The controllers directory contains the Mongoose methods for each schema, and the routes directory contains the API routes that access the Mongoose methods. The app is run through server.js by typing
 `````````
