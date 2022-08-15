@@ -54,7 +54,6 @@ const thoughtController = {
       });
   },
     // PUT /api/thoughts/thoughtsId#
-    // TODO: I think you need the user here
     updateThought({ params, body }, res) {
         Thought.findOneAndUpdate({ _id: params.thoughtId }, body, { new: true, runValidators: true })
         .then(dbThoughtData => {
@@ -74,17 +73,6 @@ const thoughtController = {
                     return res.status(404).json({ message: 'No thought with this id!' });
                 }
                 res.json(deletedThought);
-            //     return User.findOneAndUpdate(
-            //         { _id: params.userId },
-            //         { $pull: { thoughts: params.thoughtId } },
-            //         { new: true }
-            //     ).then(dbUserData => {
-            //     if(!dbUserData) {
-            //         res.status(404).json({ message: 'No user found with this id!' });
-            //         return;
-            //     }
-            //     res.json(dbUserData);
-            // })
             }).catch(err => res.json(err));
     },
     // POST /api/thoughts/thoughtId#/reactions
