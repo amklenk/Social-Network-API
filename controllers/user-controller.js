@@ -58,7 +58,6 @@ const userController = {
         .catch(err => res.status(400).json(err));
       },
 
-      // TODO: Check this for delete on cascade
       // DELETE /api/users/userId#
       deleteUser({ params }, res){
         User.findOneAndDelete({ _id: params.userId })
@@ -74,6 +73,7 @@ const userController = {
         .catch(err => res.status(400).json(err));
       },
       // POST /api/users/userId#/friends/friendId#
+      // expects user's Id # and friend's (another user) Id #, no body
     addFriend({ params, body }, res){
       User.findOneAndUpdate(
           { _id: params.userId },

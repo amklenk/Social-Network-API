@@ -19,6 +19,7 @@ const ThoughtSchema = new Schema({
         type: String,
         required: true
     },
+    // reaction schema imported and used here
     reactions: [ReactionSchema]
 },
 {

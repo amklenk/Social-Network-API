@@ -76,6 +76,7 @@ const thoughtController = {
             }).catch(err => res.json(err));
     },
     // POST /api/thoughts/thoughtId#/reactions
+    // expects { "reactionBody": "Great!", "username": "user" }
     addReaction({ params, body }, res){
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
